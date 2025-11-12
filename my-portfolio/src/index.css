@@ -1,155 +1,190 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ------------------ THEME TOKENS (HSL) ------------------ */
+/* All tokens are HSL triplets so hsl(var(--token)) works */
 @layer base {
   :root {
-    --background: 10 10 15
-    --foreground: 255 255 255;
+    /* core */
+    --background: 0 0% 100%;     /* #0A0A0F */
+    --foreground: 0 0% 3.9%;      /* #ffffff */
 
-    --card: 15 15 25;
-    --card-foreground: 255 255 255 255;
+    --card: 0 0% 100%;           /* #0F0F19 */
+    --card-foreground: 0 0% 3.9%;
 
-    --popover: 15 15 25;
-    --popover-foreground: 255 255 255 ;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
 
-    --primary: 0 217 255;
-    --primary-foreground: 10 10 15;
+    --primary: 0 0% 9%;      /* #00D9FF */
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 26 26 46;
-    --secondary-foreground: 255 255 255;
+    --secondary: 0 0% 96.1%;     /* #1A1A2E */
+    --secondary-foreground: 0 0% 9%;
 
-    --muted: 26 26 46;
-    --muted-foreground: 160 160 180;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;   /* ~#a0a0b4 */
 
-    --accent: 184 71 255;
-    --accent-foreground: 255 255 255;
+    --accent: 0 0% 96.1%;       /* #B847FF */
+    --accent-foreground: 0 0% 9%;
 
-    --destructive: 255 27 122;
-    --destructive-foreground: 255 255 255;
+    --destructive: 0 84.2% 60.2%;  /* #FF1B7A */
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 26 26 46;
-    --input: 26 26 46;
-    --ring: 0 217 255;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
 
-    --radius: 0.5rem
+    /* charts (optional; used in some shadcn presets) */
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+
+    /* sidebar namespace (your config expects these) */
+    --sidebar-background: 240 24% 6%;
+    --sidebar-foreground: 0 0% 96%;
+    --sidebar-primary: 188 100% 50%;
+    --sidebar-primary-foreground: 240 24% 5%;
+    --sidebar-accent: 280 100% 64%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 234 28% 18%;
+    --sidebar-ring: 188 100% 50%;
+
+    --radius: 0.5rem;
   }
+
+  /* If you want a light theme on :root and dark on .dark, invert these.
+     Below keeps a slightly brighter variant for .dark if you toggle it. */
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
+
     --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;
+
     --popover: 0 0% 3.9%;
     --popover-foreground: 0 0% 98%;
+
     --primary: 0 0% 98%;
     --primary-foreground: 0 0% 9%;
+
     --secondary: 0 0% 14.9%;
     --secondary-foreground: 0 0% 98%;
+
     --muted: 0 0% 14.9%;
     --muted-foreground: 0 0% 63.9%;
+
     --accent: 0 0% 14.9%;
     --accent-foreground: 0 0% 98%;
+
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
+
     --border: 0 0% 14.9%;
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
+
+    --sidebar-background: 240 24% 5%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 188 100% 55%;
+    --sidebar-primary-foreground: 240 24% 5%;
+    --sidebar-accent: 280 100% 66%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 234 28% 20%;
+    --sidebar-ring: 188 100% 55%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%
+    --chart-5: 340 75% 55%;
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
+  * { @apply border-border; }
   body {
     @apply bg-background text-foreground;
     background: radial-gradient(
       ellipse at center,
-      rgba(184, 71, 255, 0.1) 0%,
-      rgba(10,10,15,1) 70%
+      hsla(280,100%,64%,0.1) 0%,
+      hsl(240,24%,5%) 70%
     );
   }
-  html {scroll-behavior: smooth;}
+  html { scroll-behavior: smooth; }
 }
 
+/* ------------------ CUSTOM UTILITIES ------------------ */
 @layer components {
-  .cyber-grid{
-    background-image: 
-      linear-gradient(rgba(0,217,255,0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 217, 255, 0.1) 1px, transparent 1px)
-    ;
+  .cyber-grid {
+    background-image:
+      linear-gradient(hsla(188,100%,50%,0.1) 1px, transparent 1px),
+      linear-gradient(90deg, hsla(188,100%,50%,0.1) 1px, transparent 1px);
     background-size: 50px 50px;
   }
-  .neon-border{
+
+  .neon-border {
     border: 1px solid transparent;
-    background: linear-gradient(45deg, rgba(0,217,255,0.3), rgba(184, 71, 255, 0.3)) border-box;
+    background: linear-gradient(45deg, hsla(188,100%,50%,0.3), hsla(280,100%,64%,0.3)) border-box;
     border-radius: 8px;
   }
-  .glow-text{
-    text-shadow: 
-     0 0 5px currentColor,
-     0 0 10px currentColor,
-     0 0 20px currentColor;
-    ;
+
+  .glow-text {
+    text-shadow:
+      0 0 5px currentColor,
+      0 0 10px currentColor,
+      0 0 20px currentColor;
   }
-  .hologram{
+
+  .hologram {
     background: linear-gradient(
       45deg,
-      rgba(0,217, 255, 0.1),
-      rgba(184, 71, 255, 0.1),
-      rgba(0, 255, 136, 0.1)
+      hsla(188,100%,50%,0.1),
+      hsla(280,100%,64%,0.1),
+      hsla(150,100%,50%,0.1)
     );
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 217, 255, 0.3);
+    border: 1px solid hsla(188,100%,50%,0.3);
   }
-  .cyber-button{
+
+  .cyber-button {
     @apply relative overflow-hidden bg-gradient-to-r from-cyber-blue to-cyber-purple text-white font-bold py-3 px-6 rounded-lg transition-all duration-300;
   }
-  .cyber-button:hover{
+  .cyber-button:hover {
     @apply scale-105;
-    box-shadow: 
-    0 0 20px rgba(0, 217, 255, 0.5),
-    0 0 40px rgba(184, 71, 255, 0.3);
-    
+    box-shadow:
+      0 0 20px hsla(188,100%,50%,0.5),
+      0 0 40px hsla(280,100%,64%,0.3);
   }
-  .cyber-button::before{
+  .cyber-button::before {
     content: '';
     @apply absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 -skew-x-12 transition-all duration-700;
     left: -100%;
   }
-  .cyber-button:hover::before{
+  .cyber-button:hover::before {
     @apply opacity-20;
     left: 100%;
   }
-  .matrix-bg{
-    position:fixed; 
-    inset:0;
-    width:100%;
-    height: 100%;
+
+  .matrix-bg {
+    position: fixed; inset: 0;
+    width: 100%; height: 100%;
     pointer-events: none;
-    z-index: -1;
-    opacity: 0.1;
+    z-index: -1; opacity: 0.1;
   }
-  .floating-icon{
-    @apply transition-all duration-300;
-  }
-  .floating-icon:hover{
+
+  .floating-icon { @apply transition-all duration-300; }
+  .floating-icon:hover {
     @apply scale-110 text-cyber-blue;
     filter: drop-shadow(0 0 10px currentColor);
   }
-  .section-enter{
-    opacity: 0;
-    transform: translateY(30px);
+
+  .section-enter {
+    opacity: 0; transform: translateY(30px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
   }
-  .section-enter.animate {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .section-enter.animate { opacity: 1; transform: translateY(0); }
 }
