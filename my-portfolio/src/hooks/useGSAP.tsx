@@ -39,7 +39,7 @@ const killTween = (tween: gsap.core.Tween) => {
 
 //hooks
 export const useFadeIn = (config: FadeInConfig = {}) => {
-    const ref = useRef<HTMLElement | null>(null);
+    const ref = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         const el = ref.current;
@@ -96,7 +96,7 @@ export const useFadeIn = (config: FadeInConfig = {}) => {
 };
 
 export const useScaleIn = (config: ScaleConfig = {}) => {
-    const ref = useRef<HTMLElement | null>(null);
+    const ref = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         const el = ref.current;
@@ -148,7 +148,7 @@ export const useScaleIn = (config: ScaleConfig = {}) => {
 };
 
 export const useStaggerIn = (config: AnimationConfig = {}) => {
-    const ref = useRef<HTMLElement | null>(null);
+    const ref = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         const el = ref.current;
@@ -198,7 +198,7 @@ export const useStaggerIn = (config: AnimationConfig = {}) => {
 };
 
 export const useParallax = (config: ParallaxConfig = {}) => {
-    const ref = useRef<HTMLElement | null>(null);
+    const ref = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         const el = ref.current;
@@ -242,7 +242,7 @@ export const useSlideIn = (
     direction: "left" | "right" | "top" | "bottom",
     config: AnimationConfig = {}
 ) => {
-    const ref = useRef<HTMLElement | null>(null);
+    const ref = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         const el = ref.current;
@@ -310,7 +310,7 @@ export const useSlideIn = (
 };
 
 export const useRotateIn = (config: AnimationConfig = {}) => {
-    const ref = useRef<HTMLElement | null>(null);
+    const ref = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         const el = ref.current;
